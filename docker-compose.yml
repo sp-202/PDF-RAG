@@ -1,0 +1,14 @@
+# docker-compose.yml
+version: '3.8'
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama # Use the name you see in 'docker ps' if different
+    ports:
+      - "11434:11434" # This is the crucial change
+      # You can remove the 8888 mapping if you don't need it for anything else,
+      # or keep it if you intend to use it for other purposes.
+      # - "8888:8888" # Optional: remove if not needed
+    volumes:
+      - ./ollama_data:/root/.ollama # Persist Ollama data
+    restart: unless-stopped
